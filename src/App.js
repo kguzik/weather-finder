@@ -2,11 +2,13 @@ import React from 'react';
 import Header from './components/Header';
 import Search from './components/Search';
 import Weather from './components/Weather';
+import Helmet from 'react-helmet';
 
 const apiKey = "9e2f1c9dcba6b906904ed1c166a94535";
 
 class App extends React.Component {
   state = {
+    title: 'Basic information about weather | The weather finder',
     temperature: undefined,
     city: undefined,
     country: undefined,
@@ -25,6 +27,7 @@ class App extends React.Component {
       console.log(data);
       if(data.cod === "404") {
         this.setState({
+          title: 'Basic information about weather | The weather finder',
           temperature: undefined,
           city: undefined,
           country: undefined,
@@ -34,6 +37,7 @@ class App extends React.Component {
         });
       } else {
         this.setState({
+          title: `Weather in ${data.name}, ${data.sys.country} | The weather finder`,
           temperature: data.main.temp,
           city: data.name,
           country: data.sys.country,
@@ -44,6 +48,7 @@ class App extends React.Component {
       }
     } else {
       this.setState({
+        title: 'Basic information about weather | The weather finder',
         temperature: undefined,
         city: undefined,
         country: undefined,
@@ -56,6 +61,10 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
+        <Helmet>
+          <title>{this.state.title}</title>
+          <meta name="description" content="Find the basic information about weather with The Weather Finder. Check temperature, humidity and weather description in your city &#9728;&#9729;" />
+        </Helmet>
         <Header/>
         <Search getWeather={this.getWeather}/>
         <Weather
