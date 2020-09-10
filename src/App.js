@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Search from './components/Search';
 import Weather from './components/Weather';
+import Footer from './components/Footer';
 import Helmet from 'react-helmet';
 
 const apiKey = "9e2f1c9dcba6b906904ed1c166a94535";
@@ -24,7 +25,6 @@ class App extends React.Component {
     const apiCall = await fetch(` http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${apiKey}`);
     const data = await apiCall.json();
     if(city && country) {
-      console.log(data);
       if(data.cod === "404") {
         this.setState({
           title: 'Basic information about weather | The weather finder',
@@ -65,7 +65,7 @@ class App extends React.Component {
           <title>{this.state.title}</title>
           <meta name="description" content="Find the basic information about weather with The Weather Finder. Check temperature, humidity and weather description in your city &#9728;&#9729;" />
         </Helmet>
-        <Header/>
+        <Header title="The weather finder"/>
         <Search getWeather={this.getWeather}/>
         <Weather
           temperature={this.state.temperature}
@@ -75,6 +75,7 @@ class App extends React.Component {
           description={this.state.description}
           error={this.state.error}
         />
+        <Footer info="Designed & created by Karolina Guzik"/>
       </div>
     );
   }
