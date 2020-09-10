@@ -22,7 +22,7 @@ class App extends React.Component {
     e.preventDefault();
     const country = e.target.elements.country.value;
     const city = e.target.elements.city.value;
-    const apiCall = await fetch(` http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${apiKey}`);
+    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${apiKey}`);
     const data = await apiCall.json();
     if(city && country) {
       if(data.cod === "404") {
