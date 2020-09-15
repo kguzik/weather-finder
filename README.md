@@ -1,4 +1,4 @@
-You can see weather finder here: https://kguzik.github.io/weather-finder/
+Live version: https://kguzik.github.io/weather-finder/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
